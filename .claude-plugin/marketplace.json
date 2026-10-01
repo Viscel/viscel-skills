@@ -1,0 +1,12 @@
+{
+  "name": "viscel-skills",
+  "description": "Skills gratis del Taller de Viscel. Se actualizan: novedades en taller.viscel.com.ar",
+  "owner": { "name": "Viscel Labs" },
+  "plugins": [
+    {
+      "name": "memoria-obsidian",
+      "source": "./plugins/memoria-obsidian",
+      "description": "Memoria persistente para Claude Code en un vault de Obsidian"
+    }
+  ]
+}

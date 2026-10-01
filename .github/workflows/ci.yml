@@ -1,0 +1,44 @@
+name: ci
+
+# Antes de que algo llegue a main: pruebas de los scripts, consistencia de los
+# plugins, validación con la CLI de Claude Code y el control de saneamiento
+# contra la lista de bloqueo (el secret SANITIZE_BLOCKLIST, que no vive en el repo).
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  controles:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Pruebas de los scripts
+        run: node --test "scripts/*.test.mjs"
+
+      - name: Nombres, versiones y skills
+        run: node scripts/check-plugin.mjs
+
+      - name: Validación con la CLI de Claude Code
+        # Un marketplace sin plugins es un aviso que --strict vuelve error: el repo pro
+        # arranca vacío y se valida desde su primer plugin.
+        run: |
+          if ! ls -d plugins/*/ >/dev/null 2>&1; then echo "Sin plugins todavía: no hay nada que validar."; exit 0; fi
+          npm install -g @anthropic-ai/claude-code
+          claude plugin validate --strict .
+          for p in plugins/*/; do claude plugin validate --strict "$p"; done
+
+      # Sin el secret el control falla (sale con 2): un control que no se pudo
+      # correr frena igual que uno que encontró algo.
+      - name: Saneamiento
+        env:
+          SANITIZE_BLOCKLIST: ${{ secrets.SANITIZE_BLOCKLIST }}
+        run: node scripts/sanitize-check.mjs

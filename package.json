@@ -1,0 +1,13 @@
+{
+  "name": "viscel-skills",
+  "private": true,
+  "type": "module",
+  "description": "Skills gratis del Taller de Viscel, como plugins de Claude Code",
+  "scripts": {
+    "test": "node --test \"scripts/*.test.mjs\"",
+    "check": "node scripts/check-plugin.mjs",
+    "sanitize": "node scripts/sanitize-check.mjs",
+    "empaquetar": "node scripts/empaquetar.mjs"
+  },
+  "engines": { "node": ">=22" }
+}

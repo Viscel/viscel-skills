@@ -1,0 +1,8 @@
+#!/bin/sh
+# Antes de cada push, el mismo saneamiento que corre el CI, contra la lista local.
+# La ruta de la lista vive en la config de git de esta copia, no en el repo:
+#   git config viscel.blocklist "<ruta a la lista>"
+#   git config core.hooksPath scripts/hooks
+# Un repo público expone el commit apenas se sube: el CI lo frena tarde. Esto lo frena antes.
+node scripts/check-plugin.mjs || exit 1
+node scripts/sanitize-check.mjs || exit 1

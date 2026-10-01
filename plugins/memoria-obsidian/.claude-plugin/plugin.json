@@ -1,0 +1,9 @@
+{
+  "name": "memoria-obsidian",
+  "version": "1.0.0",
+  "description": "Memoria persistente para Claude Code en un vault de Obsidian: índice, MOCs por proyecto y guardado al cerrar cada sesión.",
+  "author": { "name": "Mati Nuñez · Viscel Labs" },
+  "homepage": "https://taller.viscel.com.ar/recursos/memoria-obsidian",
+  "license": "MIT",
+  "keywords": ["obsidian", "memoria", "claude-code"]
+}
