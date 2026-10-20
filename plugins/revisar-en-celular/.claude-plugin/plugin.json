@@ -1,0 +1,9 @@
+{
+  "name": "revisar-en-celular",
+  "version": "1.0.0",
+  "description": "Revisa una web en celular, tablet y escritorio y devuelve los defectos medidos, con capturas: desborde, texto ilegible, botones chicos, contenido tapado.",
+  "author": { "name": "Mati Nuñez · Viscel Labs" },
+  "homepage": "https://taller.viscel.com.ar/recursos/revisar-en-celular",
+  "license": "MIT",
+  "keywords": ["responsive", "mobile", "celular", "web", "claude-code"]
+}
