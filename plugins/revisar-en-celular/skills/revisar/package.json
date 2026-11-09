@@ -1,0 +1,9 @@
+{
+  "name": "revisar-en-celular",
+  "private": true,
+  "type": "module",
+  "description": "El navegador que usa la skill para revisar una web en celular, tablet y escritorio",
+  "dependencies": {
+    "playwright": "1.62.1"
+  }
+}
